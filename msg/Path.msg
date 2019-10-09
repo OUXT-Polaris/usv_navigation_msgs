@@ -1,2 +1,3 @@
 Header header
-usv_navigation_msgs/Waypoint[] waypoints
+geometry_msgs/PoseStamped waypoints
+usv_navigation_msgs/Waypoint goal_waypoint
