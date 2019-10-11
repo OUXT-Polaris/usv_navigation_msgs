@@ -1,27 +1,21 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(usv_navigation_msgs)
 
-find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
-  message_generation
+find_package(ament_cmake REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+set(msg_files
+  "msg/Waypoint.msg"
+  "msg/Path.msg"
 )
 
-add_message_files(
-  FILES
-  Waypoint.msg
-  Path.msg
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  DEPENDENCIES std_msgs geometry_msgs
+  ADD_LINTER_TESTS
 )
 
-generate_messages(
-  DEPENDENCIES
-  geometry_msgs
-  std_msgs
-)
-
-catkin_package(
-)
-
-foreach(dir msg)
-  install(DIRECTORY ${dir}/
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
-endforeach(dir)
+ament_export_dependencies(rosidl_default_runtime)
+ament_package()

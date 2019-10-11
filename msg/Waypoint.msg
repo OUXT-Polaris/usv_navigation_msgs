@@ -1,4 +1,4 @@
-Header header
+std_msgs/Header header
 geometry_msgs/Pose pose
 int16 INTERPOLATED_WAYPOINT = -1
 int16 index
